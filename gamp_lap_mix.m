@@ -1,5 +1,5 @@
 function [res, input_par, output_par] = gamp_lap_mix(A_lamdi, y, gamp_par, input_par, output_par)
-%GAMP_LAP_MIX GAMP updates with a two-component Laplace mixture prior.
+% GAMP_LAP_MIX GAMP updates with a two-component Laplace mixture signal prior and a singal Gaussian noise prior.
 %
 %   [RES, INPUT_PAR, OUTPUT_PAR] = GAMP_LAP_MIX(A, Y, GAMP_PAR,
 %   INPUT_PAR, OUTPUT_PAR) performs damped AMP-PE iterations for the

@@ -189,7 +189,9 @@ function [chi, result] = qsm_lamdi(opts)
         
         residual = measurementWeight .* (expPhaseEstimate - expPhaseImage);
         residualNorm = norm(residual(:), 'fro');
-        residueWeight = updateResidualWeights(residual, opts.residualSigma);
+        if (opts.useResidueWeight)
+            residueWeight = updateResidualWeights(residual, opts.residualSigma);
+        end
 
         history.nonlinearConvergence(outerIter) = nonlinearCvg;
         history.residualNorm(outerIter) = residualNorm;
@@ -256,7 +258,8 @@ function opts = setDefaultOptions(opts)
     opts = setDefault(opts, 'gampMaxIterations', 10);
     opts = setDefault(opts, 'gampParameterIterations', 1);
     opts = setDefault(opts, 'gampConvergenceTolerance', 1e-6);
-    opts = setDefault(opts, 'useEchoSpecificMagnitudeWeights', false);
+    opts = setDefault(opts, 'useEchoSpecificMagnitudeWeights', true);
+    opts = setDefault(opts, 'useResidueWeight', true);
     opts = setDefault(opts, 'numThreads', []);
     opts = setDefault(opts, 'verbose', true);
 

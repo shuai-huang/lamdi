@@ -123,7 +123,7 @@ classdef A_lamdi_LinTrans < LinTrans
 
             y = zeros(obj.M_row, obj.M_col);
             for echoIdx = 1:obj.M_col
-                y(:, echoIdx) = dipoleResponse .* obj.W(:, echoIdx) .* obj.phaseScale(echoIdx);
+                y(:, echoIdx) = (dipoleResponse) .* obj.W(:, echoIdx) .* obj.phaseScale(echoIdx);
             end
         end
 
@@ -137,7 +137,7 @@ classdef A_lamdi_LinTrans < LinTrans
             weightedDataSum = zeros(obj.M_row, 1);
             for echoIdx = 1:obj.M_col
                 weightedDataSum = weightedDataSum + ...
-                    y(:, echoIdx) .* obj.Wt(:, echoIdx) .* obj.phaseScale(echoIdx);
+                    (y(:, echoIdx) .* obj.Wt(:, echoIdx) .* obj.phaseScale(echoIdx));
             end
 
             imageData = reshape(obj.A.trans(weightedDataSum), obj.mat_sz);
